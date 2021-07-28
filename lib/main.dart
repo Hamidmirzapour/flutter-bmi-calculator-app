@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -13,6 +14,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  double height = 162.0;
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -20,11 +22,11 @@ class _MyAppState extends State<MyApp> {
         appBar: AppBar(
           title: Text("BMI Calculator"),
           centerTitle: true,
-          backgroundColor: Colors.black26,
+          backgroundColor: Colors.black54,
           elevation: 0.5,
         ),
         body: Container(
-          color: Colors.black26,
+          color: Colors.black54,
           child: Column(
             children: [
               Container(
@@ -37,7 +39,13 @@ class _MyAppState extends State<MyApp> {
                         padding: EdgeInsets.all(20.0),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(8.0),
-                          color: Colors.black54,
+                          boxShadow: <BoxShadow>[
+                            BoxShadow(
+                                color: Color.fromRGBO(88, 88, 88, 0.9),
+                                offset: Offset(2, 2),
+                                blurRadius: 8),
+                          ],
+                          color: Color.fromRGBO(35, 35, 32, 1.0),
                         ),
                         child: Column(
                           children: [
@@ -51,7 +59,8 @@ class _MyAppState extends State<MyApp> {
                             ),
                             Text(
                               "Male",
-                              style: TextStyle(color: Colors.white),
+                              style: TextStyle(
+                                  color: Colors.white, fontSize: 18.0),
                             )
                           ],
                         ),
@@ -64,7 +73,13 @@ class _MyAppState extends State<MyApp> {
                         padding: EdgeInsets.all(20.0),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(8.0),
-                          color: Colors.black54,
+                          boxShadow: <BoxShadow>[
+                            BoxShadow(
+                                color: Color.fromRGBO(88, 88, 88, 0.9),
+                                offset: Offset(2, 2),
+                                blurRadius: 8),
+                          ],
+                          color: Color.fromRGBO(35, 35, 32, 1.0),
                         ),
                         child: Column(
                           children: [
@@ -78,7 +93,8 @@ class _MyAppState extends State<MyApp> {
                             ),
                             Text(
                               "Female",
-                              style: TextStyle(color: Colors.white),
+                              style: TextStyle(
+                                  color: Colors.white, fontSize: 18.0),
                             )
                           ],
                         ),
@@ -87,7 +103,67 @@ class _MyAppState extends State<MyApp> {
                   ],
                 ),
               ),
-              Container(child: Row()),
+              Container(
+                  child: Row(
+                children: [
+                  Flexible(
+                    fit: FlexFit.tight,
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: Color.fromRGBO(35, 35, 32, 1.0),
+                        borderRadius: BorderRadius.circular(8.0),
+                        boxShadow: <BoxShadow>[
+                          BoxShadow(
+                              color: Color.fromRGBO(88, 88, 88, 0.9),
+                              offset: Offset(2, 2),
+                              blurRadius: 8),
+                        ],
+                      ),
+                      padding: EdgeInsets.all(30.0),
+                      margin: EdgeInsets.all(10.0),
+                      child: Column(
+                        children: [
+                          Container(
+                            margin: EdgeInsets.only(bottom: 10.0),
+                            child: Text(
+                              "Height",
+                              style: TextStyle(
+                                  color: Colors.white, fontSize: 18.0),
+                            ),
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                height.toString().substring(0, 3),
+                                style: TextStyle(
+                                    color: Colors.white, fontSize: 18.0),
+                              ),
+                              Text(
+                                " cm",
+                                style: TextStyle(
+                                    color: Colors.white, fontSize: 18.0),
+                              ),
+                            ],
+                          ),
+                          CupertinoSlider(
+                            value: height,
+                            min: 120.0,
+                            max: 240.0,
+                            divisions: 120,
+                            activeColor: Colors.redAccent,
+                            onChanged: (c) {
+                              setState(() {
+                                height = c;
+                              });
+                            },
+                          )
+                        ],
+                      ),
+                    ),
+                  )
+                ],
+              )),
               Container(child: Row()),
               Container(child: Row()),
             ],
